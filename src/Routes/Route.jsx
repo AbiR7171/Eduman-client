@@ -3,6 +3,8 @@ import {
   } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home/Home";
+import SignIn from "../Pages/Authentication/SignIn";
+import SignUp from "../Pages/Authentication/SignUp";
 
 
   const router = createBrowserRouter([
@@ -13,6 +15,14 @@ import Home from "../Pages/Home/Home";
          {
             path:"/",
             element:<Home/>
+         },
+         {
+          path:"/signIn",
+          element:<SignIn/>
+         },
+         {
+          path:"/signUp",
+          element:<SignUp/>
          }
       ]
     },
