@@ -1,7 +1,11 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import useUsers from '../../../Hooks/useUsers';
 
-const TopCategories = () => {
+const TopCategories = () => { 
+
+      const[user]=useUsers();
+      console.log(user);
     return (
         <div>
             <p className='text-center text-2xl font-serif'>Explore <br /> Our Top Categories</p>
