@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ShareBanner from '../../Shared/ShareBanner';
 import formImage from "../../assets/Images/formImage.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import AuthProvider from '../../API/AuthProvider';
 
 const SignIn = () => {
-    const [user, setUser] = useState(['tanvirhaider292297@gmail.com'])
-    console.log(user);
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const handleForm = e =>{
                     e.preventDefault()
                     const form = e.target;
                     const email = form.email.value;
                     const password = form.password.value;
-                    const currentUser = {
-                      email,
-                    }
-                    console.log(email, password);
+                    localStorage.setItem('mail', email)
+                      
 
                     axios.get(`http://localhost:5000/login/${email}`)
                     .then(res =>{
@@ -24,8 +23,9 @@ const SignIn = () => {
                           if(res.data.length > 0){
                                  const confirmation = res?.data.find(i => i.email === email && i.password === password)
                                  console.log(confirmation);
+                                 navigate(from, {replace:true})
                                  if(confirmation){
-                                  setUser(currentUser);
+                                  
                                     const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-end',
@@ -65,7 +65,6 @@ const SignIn = () => {
     }
     return (
         <div> 
-
             <ShareBanner title={"sign in"} path={"sign in"}/>
 
             <div className='grid grid-cols-2  items-center justify-center gap-6 px-32 '>
