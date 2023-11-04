@@ -25,7 +25,7 @@ const SignIn = () => {
                                  console.log(confirmation);
                                  navigate(from, {replace:true})
                                  if(confirmation){
-                                  
+                                    localStorage.setItem("edumanUser", email)
                                     const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-end',

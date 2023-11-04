@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import image from "../../assets/Images/entrepreneurs-meeting-office.jpg"
 import formImage from "../../assets/Images/formImage.png"
 import { Link } from 'react-router-dom';
@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import ShareBanner from '../../Shared/ShareBanner';
 
 const SignUp = () => {
+
+
 
   const handleForm = e =>{
 
@@ -33,6 +35,7 @@ const SignUp = () => {
          .then(res =>{
                  console.log(res.data);
                  if(res.data.insertedId){
+                    localStorage.setItem("edumanUser", email)
                   form.reset()
                   const Toast = Swal.mixin({
                     toast: true,
