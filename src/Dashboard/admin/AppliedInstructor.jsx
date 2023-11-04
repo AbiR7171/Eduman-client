@@ -8,6 +8,47 @@ const AppliedInstructor = () => {
     .then(data => setInstructor(data))
   },[])
   console.log(instructor)
+  const handleApproved =(email) =>{
+    
+    const currentRole = {
+      role: "instructor",
+    }
+    fetch(`http://localhost:5000/instructorReq/${email}`,{
+                method : 'PUT',
+                headers:{
+                    "content-type" : "application/json",
+                },
+                body: JSON.stringify(currentRole),
+            })
+            .then((res)=> res.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .then((error =>{
+                console.log(error);
+            }))
+  }
+  const handleDelete =(email) =>{
+    const inst = "instructor"
+    const currentRole = {
+      role: inst,
+    }
+    console.log(email)
+    fetch(`http://localhost:5000/delete/${email}`,{
+                method : 'DELETE',
+                headers:{
+                  "content-type" : "application/json",
+              },
+                
+            })
+            .then((res)=> res.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .then((error =>{
+                console.log(error);
+            }))
+  }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -60,8 +101,8 @@ const AppliedInstructor = () => {
         </td>
         <td>{singleInstructor.time}</td>
         <th className='grid'>
-          <button className="btn btn-ghost btn-xs">approved</button>
-          <button className="btn btn-ghost btn-xs">Decline</button>
+          <button className="btn btn-ghost btn-xs" onClick={()=>handleApproved(singleInstructor.email)}>approved</button>
+          <button className="btn btn-ghost btn-xs" onClick={()=>handleDelete(singleInstructor.email)}>Decline</button>
         </th>
       </tr>
         ))

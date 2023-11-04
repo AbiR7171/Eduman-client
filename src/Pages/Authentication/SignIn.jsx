@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShareBanner from '../../Shared/ShareBanner';
 import formImage from "../../assets/Images/formImage.png"
 import { Link } from 'react-router-dom';
@@ -6,13 +6,16 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const SignIn = () => {
-    
+    const [user, setUser] = useState(['tanvirhaider292297@gmail.com'])
+    console.log(user);
     const handleForm = e =>{
                     e.preventDefault()
                     const form = e.target;
                     const email = form.email.value;
                     const password = form.password.value;
-
+                    const currentUser = {
+                      email,
+                    }
                     console.log(email, password);
 
                     axios.get(`http://localhost:5000/login/${email}`)
@@ -22,6 +25,7 @@ const SignIn = () => {
                                  const confirmation = res?.data.find(i => i.email === email && i.password === password)
                                  console.log(confirmation);
                                  if(confirmation){
+                                  setUser(currentUser);
                                     const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-end',

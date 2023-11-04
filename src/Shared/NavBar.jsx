@@ -82,7 +82,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-end space-x-3 me-2">
           <a ><Icon icon="mdi:cart" className='text-3xl' /></a>
-          <Link><button className="btn btn-primary">SignUp</button></Link>
+          <Link to={"/signUp"}><button className="btn btn-primary">SignUp</button></Link>
           <p><Icon icon="tdesign:menu-fold" /></p>
         </div>
       </div>
