@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logoImage from "../assets/Images/2210_w018_n002_1385a_p30_1385.jpg"
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../API/AuthProvider';
+
 
 const NavBar = () => {
+  // const [instructor, setInstructor] = useState([])
+  const {currentUser, loading} = useContext(AuthContext);
+  
+
+  if(loading){
+    return <div>hello</div>
+  }
     return (
         <div className="navbar bg-base-100  ">
         <div className="navbar-start ">
@@ -54,12 +63,16 @@ const NavBar = () => {
               <details>
                 <summary>Instructors</summary>
                 <ul className="p-1 w-24">
-                  <li><a>Become Instructors</a></li>
+                  <li><Link to={"/becomeInstructor"}>Become Instructors</Link></li>
               
                 </ul>
               </details>
             </li>
             <li><a>Events</a></li>
+            {
+              currentUser.role == 'instructor' && <li><Link to={"/instructor"}>Dashboard-instructor</Link></li>
+            }
+            <li><Link to={"/admin"}>Dashboard-admin</Link></li>
             <li tabIndex={0}>
               <details>
                 <summary>Pages</summary>
@@ -79,7 +92,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-end space-x-3 me-2">
           <a ><Icon icon="mdi:cart" className='text-3xl' /></a>
-          <Link to="/signUp"><button className="btn btn-primary">SignUp</button></Link>
+          <Link to={"/signUp"}><button className="btn btn-primary">SignUp</button></Link>
           <p><Icon icon="tdesign:menu-fold" /></p>
         </div>
       </div>
