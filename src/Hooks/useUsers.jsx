@@ -11,7 +11,7 @@ const useUsers = () => {
            queryKey:["email", email],
            queryFn: async()=>{
                  
-                 const res = await axios.get(`http://localhost:5000/currentUser/${email}`);
+                 const res = await axios.get(`http://localhost:5000/currentUsers/${email}`);
                  return res.data
            }
       })

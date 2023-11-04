@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import instructorImg from '../../../public/instructor.jpg';
 import { imgUpload } from '../../API/imgbb';
+import useUsers from '../../Hooks/useUsers';
 
 const Instructor = () => {
     const [requirement, setRequirement] = useState(['']);
     const [curriculum, setCurriculum] = useState(['']);
     const [topic, setTopic] = useState(['']);
     const [imageName, setImageName] = useState('Upload image')
+    const [user] = useUsers();
     // requirement  function start
     const handleAdd = () =>{
         const inp = [...requirement,[]]
@@ -192,8 +194,8 @@ const Instructor = () => {
                     )
                 }
             )}   
-            <input type="text" name="instructorName" defaultValue={"processing"} id="" className='hidden' />
-            <input type="text" name="instructorEmail" id="" defaultValue={"proceessing"} className='hidden' />
+            <input type="text" name="instructorName" defaultValue={user.name} id="" className='hidden' />
+            <input type="text" name="instructorEmail" id="" defaultValue={user.email} className='hidden' />
             <button className='bg-green-400' onClick={()=>handleAdd3()}>+Add Topic</button>
             </div>
              <hr />

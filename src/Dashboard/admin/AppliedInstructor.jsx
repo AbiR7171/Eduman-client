@@ -29,11 +29,6 @@ const AppliedInstructor = () => {
             }))
   }
   const handleDelete =(email) =>{
-    const inst = "instructor"
-    const currentRole = {
-      role: inst,
-    }
-    console.log(email)
     fetch(`http://localhost:5000/delete/${email}`,{
                 method : 'DELETE',
                 headers:{

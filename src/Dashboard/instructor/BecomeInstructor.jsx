@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { imgUpload } from '../../API/imgbb';
+import useUsers from '../../Hooks/useUsers';
 
 const BecomeInstructor = () => {
+    const [user] = useUsers();
     const [imageName, setImageName] = useState('Upload image')
     const handleForm = event =>{
         event.preventDefault();
@@ -45,7 +47,7 @@ const BecomeInstructor = () => {
     return (
         <div>
             <form action="" onSubmit={()=>handleForm(event)} className='grid gap-5'>
-                <input type="text"  name='email' />
+                <input type="text"  name='email' defaultValue={user.email} className='hidden' />
                 <input type="text" name="name" placeholder='Enter your name' />
                 <input type="text" name="category" placeholder='Enter your service category' />
                 <label>

@@ -7,6 +7,54 @@ const AppliedClass = () => {
     .then(res => res.json())
     .then(data => setCourseData(data))
   },[])
+  const handleApproved = (id) =>{
+    const approvedData = courseData.filter(e =>e._id == id)
+   console.log(approvedData[0])
+    fetch(`http://localhost:5000/approvedCourse`,{
+                method : 'POST',
+                headers:{
+                    "content-type" : "application/json",
+                },
+                body: JSON.stringify(approvedData[0]),
+            })
+            .then((res)=> res.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .then((error =>{
+                console.log(error);
+            }))
+    fetch(`http://localhost:5000/deleteAppliedCourse/${id}`,{
+                method : 'DELETE',
+                headers:{
+                  "content-type" : "application/json",
+              },
+                
+            })
+            .then((res)=> res.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .then((error =>{
+                console.log(error);
+            }))
+  }
+  const handleDelete = (id) =>{
+    fetch(`http://localhost:5000/deleteAppliedCourse/${id}`,{
+                method : 'DELETE',
+                headers:{
+                  "content-type" : "application/json",
+              },
+                
+            })
+            .then((res)=> res.json())
+            .then((data)=>{
+                console.log(data)
+            })
+            .then((error =>{
+                console.log(error);
+            }))
+  }
     return (
         <div>
              <div className="overflow-x-auto">
@@ -70,8 +118,8 @@ const AppliedClass = () => {
           
         </th>
         <th className='grid'>
-          <button className="btn btn-ghost btn-xs">approved</button>
-          <button className="btn btn-ghost btn-xs">Decline</button>
+          <button className="btn btn-ghost btn-xs" onClick={()=>handleApproved(course._id)}>approved</button>
+          <button className="btn btn-ghost btn-xs" onClick={()=>handleDelete(course._id)}>Decline</button>
         </th>
       </tr>
           ))
