@@ -8,24 +8,32 @@ import AuthProvider from '../../API/AuthProvider';
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const [err, setErr] = useState()
+    const [err2, setErr2] = useState()
     const from = location.state?.from?.pathname || '/';
     const handleForm = e =>{
+      setErr('')
+      setErr2('')
                     e.preventDefault()
                     const form = e.target;
                     const email = form.email.value;
                     const password = form.password.value;
                     localStorage.setItem('mail', email)
-                      
-
                     axios.get(`http://localhost:5000/login/${email}`)
                     .then(res =>{
-                          console.log(res.data);
                           if(res.data.length > 0){
-                                 const confirmation = res?.data.find(i => i.email === email && i.password === password)
-                                 console.log(confirmation);
-                                 navigate(from, {replace:true})
-                                 if(confirmation){
+                                const passConfirmation = res?.data?.find(i => i.password === password)
+                                 const confirmation = res?.data.find(i => i.email === email)
+                                 if(!passConfirmation){
+                                   setErr('password wrong')
+                                 }
+                                 
+                                 
+                                 if(confirmation && passConfirmation){
+                                    localStorage.removeItem("edumanUser")
                                     localStorage.setItem("edumanUser", email)
+                                    window.location.reload()
+                                    navigate(from, {replace:true})
                                     const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-end',
@@ -44,6 +52,7 @@ const SignIn = () => {
                                       })
                                  }
                           }else{
+                            setErr2('user or password wrong');
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -78,7 +87,10 @@ const SignIn = () => {
 <form onSubmit={handleForm} className='px-10'>
 
 
-
+<h1 className='text-center mb-5 text-4xl font-serif font-semibold'>LOGIN</h1>
+{
+  err2 && <p className='text-center text-red-500 mb-5'>{err2}</p>
+}
 
 <div className="mb-4">
 
@@ -100,6 +112,9 @@ className="w-full p-4 rounded-md focus:outline-none bg-gray-100"
 placeholder='Enter Password'
 />
 </div>
+{
+  err && <p className='text-red-500 mb-5'>{err}</p>
+}
 <div className="text-center">
 <button
 type="submit"

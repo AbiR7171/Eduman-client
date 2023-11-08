@@ -7,6 +7,7 @@ const AuthProvider = ({children}) => {
 const users = localStorage.getItem("mail")
 const [currentUser, setCurrentUser] = useState([])
 const [loading, setLoading] = useState(false)
+const [isCart, setIsCart] = useState(true)
 
 
 useEffect(()=>{
@@ -20,15 +21,18 @@ useEffect(()=>{
                             setLoading(false)
                           })                           
 },[users])
-   console.log(currentUser)
 
-    
+    const handleCartLoad = () =>{
+       return setIsCart(!isCart)
+    } 
     
     
 
     const authInfo ={
         currentUser,
-        loading
+        loading,
+        handleCartLoad,
+        isCart
     }
     return (
         <AuthContext.Provider value={authInfo}>

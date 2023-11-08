@@ -5,8 +5,6 @@ import React from 'react';
 const useUsers = () => {
 
     const email = localStorage.getItem("edumanUser");
-    console.log(email);
-     
       const {data:user=[]}=useQuery({
            queryKey:["email", email],
            queryFn: async()=>{
@@ -15,7 +13,6 @@ const useUsers = () => {
                  return res.data
            }
       })
-
       return [user]
 };
 

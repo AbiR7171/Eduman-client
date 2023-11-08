@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import image from "../../assets/Images/entrepreneurs-meeting-office.jpg"
 import formImage from "../../assets/Images/formImage.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import ShareBanner from '../../Shared/ShareBanner';
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const SignUp = () => {
-
+const [loader, setLoader] = useState(true)
+const [err, setErr] = useState('')
+const navigate = useNavigate()
 
 
   const handleForm = e =>{
-
+    setErr('')
+    setLoader(false)
 
          e.preventDefault();
          const form = e.target;
@@ -20,12 +24,8 @@ const SignUp = () => {
          const phoneNumber =form.phone.value;
          const email = form.email.value;
          const password = form.password.value;
-
-
-         console.log(firstName, lastName, phoneNumber, email, password);
-
-
-         axios.post('http://localhost:5000/users',{
+         if(firstName && lastName && phoneNumber && email && password){
+          axios.post('http://localhost:5000/users',{
           FirstName: firstName,
           LastName : lastName,
           Phone: phoneNumber,
@@ -37,6 +37,8 @@ const SignUp = () => {
                  if(res.data.insertedId){
                     localStorage.setItem("edumanUser", email)
                   form.reset()
+                  setLoader(true)
+                  navigate('/')
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -54,7 +56,7 @@ const SignUp = () => {
                     title: 'Sign up  successfully'
                   })
                  }else{
-                    
+                  setLoader(true)
                   const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -73,6 +75,11 @@ const SignUp = () => {
                   })
                  }
          })
+         }
+         else{
+          setErr('please fill of all field')
+          setLoader(true)
+         }
 
   }
     return (
@@ -142,12 +149,18 @@ const SignUp = () => {
                 placeholder='Enter Password'
               />
             </div>
+            {
+              err && <p className='text-red-500'>Please fill all input</p>
+            }
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-3 px-4 w-full rounded-md  focus:outline-none focus:ring hover:bg-yellow-600"
+                className="bg-blue-500 text-white py-3 px-4  rounded-md  focus:outline-none focus:ring hover:bg-yellow-600"
               >
-                Sign Up
+                {
+                  !loader ? <TbFidgetSpinner className='animate-spin text-center'/> : 'Sign Up'
+                }
+                
               </button>
             </div>
 
