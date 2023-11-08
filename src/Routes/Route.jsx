@@ -49,15 +49,15 @@ import Enrolled from "../Dashboard/student/Enrolled";
             children:[
               {
                 path:"/instructor",
-                element:<Instructor></Instructor>
+                element:<InstructorPrivate><Instructor></Instructor></InstructorPrivate>
               },
               {
                 path:"/instructor/editCurse",
-                element:<CourseList/>
+                element:<InstructorPrivate><CourseList/></InstructorPrivate>
               },
               {
                 path:"/instructor/modal/:id",
-                element:<CourseEdit/>,
+                element:<InstructorPrivate><CourseEdit/></InstructorPrivate>,
               }
             ]
          },
@@ -75,20 +75,19 @@ import Enrolled from "../Dashboard/student/Enrolled";
          },
          {
             path: "/admin",
-            element:<Admin/>,
-            // element:<AdminPrivate><Admin/></AdminPrivate>,
+             element:<AdminPrivate><Admin/></AdminPrivate>,
             children:[
               {
                 path:"/admin",
-                element: <AppliedInstructor/>
+                element: <AdminPrivate><AppliedInstructor/></AdminPrivate>
               },
               {
                 path:"/admin/appliedClass",
-                element: <AppliedClass/>
+                element: <AdminPrivate><AppliedClass/></AdminPrivate>
               },
               {
                 path:"/admin/instructorslist",
-                element: <Instructorslist/>
+                element: <AdminPrivate><Instructorslist/></AdminPrivate>
               },
             ]
          }
