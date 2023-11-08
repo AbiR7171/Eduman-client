@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import useInstructorSecure from "../API/useInstructorSecure";
+import useAdminSecure from "../API/useAdminSecure";
 
 
 const InstructorPrivate = ({children}) => {
