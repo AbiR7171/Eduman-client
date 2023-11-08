@@ -13,7 +13,7 @@ import BecomeInstructor from "../Dashboard/instructor/BecomeInstructor";
 import SignIn from "../Pages/Authentication/SignIn";
 import SignUp from "../Pages/Authentication/SignUp";
 import InstructorPrivate from "../protectedRoute/InstructorPrivate";
-import AdminPrivate from "../protectedRoute/InstructorPrivate";
+import AdminPrivate from "../protectedRoute/AdminPrivate";
 import CourseList from "../Dashboard/instructor/CourseList";
 import CourseEdit from "../Dashboard/instructor/CourseEdit";
 import Details from "../Pages/Home/details";
