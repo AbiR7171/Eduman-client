@@ -1,19 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import useAxiosSecure from '../API/useAxiosSecure';
+import { AuthContext } from '../API/AuthProvider';
 
 const useUsers = () => {
-
+      const [loader, setLoader] = useState(true)
+      const [axiosSecure] = useAxiosSecure()
+      const {isMove} = useContext(AuthContext)
+console.log(isMove)
     const email = localStorage.getItem("edumanUser");
+    
       const {data:user=[]}=useQuery({
            queryKey:["email", email],
            queryFn: async()=>{
-                 
-                 const res = await axios.get(`http://localhost:5000/currentUsers/${email}`);
+            setLoader(false)
+                 const res = await axiosSecure.get(`/currentUsers/${email}`);
+                 setLoader(true)
+                 console.log(res.data)
                  return res.data
            }
       })
-      return [user]
+      return [user, loader]
 };
 
 export default useUsers;

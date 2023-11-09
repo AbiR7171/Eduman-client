@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 
 
@@ -8,22 +9,34 @@ const users = localStorage.getItem("mail")
 const [currentUser, setCurrentUser] = useState([])
 const [loading, setLoading] = useState(false)
 const [isCart, setIsCart] = useState(true)
+const [isMove, setIsMove] = useState(true)
+// const [axiosSecure] = useAxiosSecure()
 
 
-useEffect(()=>{
+// const {data:user=[]}=useQuery({
+//     queryKey:["email", email],
+//     queryFn: async()=>{
+//      setLoader(false)
+//           const res = await axiosSecure.get(`/currentUsers/${email}`);
+//           setLoader(true)
+//           setCurrentUser(res.data)
+//           return res.data
+//     }
+// })
     
-        fetch(`http://localhost:5000/currentUsers/${users}`)
+//    const res = async  axiosSecure.get(`/currentUsers/${users}`);
         
-                          .then(res => res.json())
-                          .then(data => {
-                            setLoading(true)
-                            setCurrentUser(data)
-                            setLoading(false)
-                          })                           
-},[users])
+//                             setLoading(true)
+//                             setCurrentUser(res.data)
+//                             setLoading(false)
+                                               
+
 
     const handleCartLoad = () =>{
        return setIsCart(!isCart)
+    } 
+    const handleLoginChange = () =>{
+       return setIsMove(!isMove)
     } 
     
     
@@ -32,7 +45,9 @@ useEffect(()=>{
         currentUser,
         loading,
         handleCartLoad,
-        isCart
+        isCart,
+        handleLoginChange,
+        isMove
     }
     return (
         <AuthContext.Provider value={authInfo}>

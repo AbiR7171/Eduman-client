@@ -76,10 +76,12 @@ import Enrolled from "../Dashboard/student/Enrolled";
          {
             path: "/admin",
              element:<AdminPrivate><Admin/></AdminPrivate>,
+            //  element:<Admin/>,
             children:[
               {
                 path:"/admin",
                 element: <AdminPrivate><AppliedInstructor/></AdminPrivate>
+                // element: <AppliedInstructor/>
               },
               {
                 path:"/admin/appliedClass",

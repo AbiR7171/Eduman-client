@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import bgImage from '../../../public/bg-details.jpg'
 import { Icon } from '@iconify/react';
 import Swal from 'sweetalert2';
@@ -10,10 +10,18 @@ const Details = () => {
     const { id } = useParams()
     const [course, setCourse] = useState([])
     const [refresh, setRefresh] = useState(true)
-    const [user] = useUsers()
+    const [user, loader] = useUsers()
     const [enrolledCourses, setEnrolledCourses] = useState([]);
     const {handleCartLoad} = useContext(AuthContext);
+    const navigate = useNavigate()
     // const [seam, setSeam] = useState();
+    if(!loader){
+        return  <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
+    }
+    if(!user){
+        navigate("../../signin")
+        return  <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
+    }
     let isEnrolled = []
     enrolledCourses?.forEach((item)=>{
         const final = course._id == item.id;

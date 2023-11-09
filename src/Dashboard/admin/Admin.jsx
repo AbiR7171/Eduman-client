@@ -3,11 +3,14 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { DiOpensource } from "react-icons/di";
 import { DiGhostSmall } from "react-icons/di";
 import { BiLogoDiscourse } from "react-icons/bi";
+import useAdminSecure from "../../API/useAdminSecure";
 
 const Admin = () => {
     const location = useLocation();
     const currentPathname = location.pathname;
     console.log(currentPathname);
+    const [isAdmin, loader] = useAdminSecure()
+    console.log(isAdmin)
     return (
         <>
         <h1 className='text-center text-4xl font-serif font-semibold text-blue-700 mt-2'>Admin Dashboard</h1>

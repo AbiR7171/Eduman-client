@@ -11,7 +11,6 @@ const AllCourses = () => {
     const [hoverID, setHoverId] = useState('')
     const {handleCartLoad} = useContext(AuthContext)
     const [user] = useUsers()
-    
     useEffect(()=>{
         fetch("http://localhost:5000/allCourses")
         .then(res => res.json())
