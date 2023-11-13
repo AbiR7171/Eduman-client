@@ -25,7 +25,7 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     if (firstName && lastName && phoneNumber && email && password) {
-      axios.post('http://localhost:5000/users', {
+      axios.post('https://eduman-server-silk.vercel.app/users', {
         FirstName: firstName,
         LastName: lastName,
         Phone: phoneNumber,

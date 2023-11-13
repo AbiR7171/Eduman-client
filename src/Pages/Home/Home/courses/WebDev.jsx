@@ -11,7 +11,7 @@ const WebDev = ({route}) => {
     const {handleCartLoad} = useContext(AuthContext)
     const [user] = useUsers()
     useEffect(()=>{
-        fetch(`http://localhost:5000/course/filter/${route}`)
+        fetch(`https://eduman-server-silk.vercel.app/course/filter/${route}`)
         .then(res => res.json())
         .then(data => setCourses(data))
       },[route])
@@ -42,7 +42,7 @@ const WebDev = ({route}) => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addCart`,{
+                fetch(`https://eduman-server-silk.vercel.app/addCart`,{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",

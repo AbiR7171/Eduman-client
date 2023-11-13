@@ -10,12 +10,12 @@ const Cart = () => {
     const [user] = useUsers()
     const {handleCartLoad} = useContext(AuthContext)
     useEffect(() => {
-      fetch(`http://localhost:5000/cart/${user.email}`)
+      fetch(`https://eduman-server-silk.vercel.app/cart/${user.email}`)
           .then(res => res.json())
           .then(data => { setEnrolledCourses(data) })
   },[user?.email, refresh])
   useEffect(()=>{
-    fetch("http://localhost:5000/allCourses")
+    fetch("https://eduman-server-silk.vercel.app/allCourses")
     .then(res => res.json())
     .then(data => setCourses(data))
   },[refresh])
@@ -31,7 +31,7 @@ const Cart = () => {
         id : id,
         email: user.email
     }
-      fetch(`http://localhost:5000/cartDelete`,{
+      fetch(`https://eduman-server-silk.vercel.app/cartDelete`,{
               method : 'DELETE',
               headers:{
                 "content-type" : "application/json",

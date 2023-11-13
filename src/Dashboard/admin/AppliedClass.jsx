@@ -5,13 +5,13 @@ const AppliedClass = () => {
   const [courseData, setCourseData] = useState([])
   const [refresh, setRefresh] = useState(true);
   useEffect(()=>{
-    fetch("http://localhost:5000/requestCourses")
+    fetch("https://eduman-server-silk.vercel.app/requestCourses")
     .then(res => res.json())
     .then(data => setCourseData(data))
   },[refresh])
   const handleApproved = (id) =>{
     const approvedData = courseData.filter(e =>e._id == id)
-    fetch(`http://localhost:5000/approvedCourse`,{
+    fetch(`https://eduman-server-silk.vercel.app/approvedCourse`,{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",
@@ -26,7 +26,7 @@ const AppliedClass = () => {
             .then((error =>{
                 console.log(error);
             }))
-    fetch(`http://localhost:5000/deleteAppliedCourse/${id}`,{
+    fetch(`https://eduman-server-silk.vercel.app/deleteAppliedCourse/${id}`,{
                 method : 'DELETE',
                 headers:{
                   "content-type" : "application/json",
@@ -50,7 +50,7 @@ const AppliedClass = () => {
             }))
   }
   const handleDelete = (id) =>{
-    fetch(`http://localhost:5000/deleteAppliedCourse/${id}`,{
+    fetch(`https://eduman-server-silk.vercel.app/deleteAppliedCourse/${id}`,{
                 method : 'DELETE',
                 headers:{
                   "content-type" : "application/json",

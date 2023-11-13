@@ -7,16 +7,18 @@ import { useEffect, useState } from "react";
 
 const useInstructorSecure = () => {
     const [loader, setLoader] = useState(true)
-    const [isAdmin, setIsAdmin] = useState([])
+    const [isAdmin, setIsAdmin] = useState()
     const currentUser = localStorage.getItem("edumanUser")
     
     
     useEffect(()=>{
-        fetch(`http://localhost:5000/user/admin/${currentUser}`)
+        fetch(`https://eduman-server-silk.vercel.app/user/admin/${currentUser}`)
         .then(res => res.json())
-        .then(data => { setLoader(false)
+        .then(data => { 
+            console.log(data);
+            setLoader(false)
             setIsAdmin(data.admin)
-        setLoader(true)})
+             setLoader(true)})
       },[])
 
     // const {data: isInstructor, isLoading: isAdminLoading} = useQuery({
@@ -24,7 +26,7 @@ const useInstructorSecure = () => {
         
     //     queryFn: async () =>{
             
-    //         const res = await axios.get(`http://localhost:5000/user/instructor/${currentUser}`);
+    //         const res = await axios.get(`https://eduman-server-silk.vercel.app/user/instructor/${currentUser}`);
     //             return (res.data.admin, setLoader(true));
     //     }
         

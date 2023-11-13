@@ -12,12 +12,12 @@ const Enrolled = () => {
     const [user] = useUsers()
     const {handleCartLoad} = useContext(AuthContext)
     useEffect(() => {
-      fetch(`http://localhost:5000/myenrolled/${user.email}`)
+      fetch(`https://eduman-server-silk.vercel.app/myenrolled/${user.email}`)
           .then(res => res.json())
           .then(data => { setEnrolledCourses(data) })
   },[user?.email])
   useEffect(()=>{
-    fetch("http://localhost:5000/allCourses")
+    fetch("https://eduman-server-silk.vercel.app/allCourses")
     .then(res => res.json())
     .then(data => setCourses(data))
   },[user?.email])

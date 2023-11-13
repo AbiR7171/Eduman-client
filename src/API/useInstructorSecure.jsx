@@ -12,7 +12,7 @@ const useInstructorSecure = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/instructor/${currentUser}`)
+        fetch(`https://eduman-server-silk.vercel.app/user/instructor/${currentUser}`)
             .then(res => res.json())
             .then(data => {
                 setLoader(false)
@@ -26,7 +26,7 @@ const useInstructorSecure = () => {
 
     //     queryFn: async () =>{
 
-    //         const res = await axios.get(`http://localhost:5000/user/instructor/${currentUser}`);
+    //         const res = await axios.get(`https://eduman-server-silk.vercel.app/user/instructor/${currentUser}`);
     //             return (res.data.admin, setLoader(true));
     //     }
 

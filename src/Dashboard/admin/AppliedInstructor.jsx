@@ -7,7 +7,7 @@ const AppliedInstructor = () => {
   const [refresh, setRefresh] = useState(true);
   const navigate = useNavigate()
   useEffect(()=>{
-    fetch("http://localhost:5000/requestInstructor")
+    fetch("https://eduman-server-silk.vercel.app/requestInstructor")
     .then(res => res.json())
     .then(data => setInstructor(data))
   },[refresh])
@@ -16,7 +16,7 @@ const AppliedInstructor = () => {
       role: "instructor",
       image: img
     }
-    fetch(`http://localhost:5000/instructorReq/${email}`,{
+    fetch(`https://eduman-server-silk.vercel.app/instructorReq/${email}`,{
                 method : 'PUT',
                 headers:{
                     "content-type" : "application/json",
@@ -32,7 +32,7 @@ const AppliedInstructor = () => {
             .then((error =>{
                 console.log(error);
             }))
-            fetch(`http://localhost:5000/delete/${email}`,{
+            fetch(`https://eduman-server-silk.vercel.app/delete/${email}`,{
               method : 'DELETE',
               headers:{
                 "content-type" : "application/json",
@@ -56,7 +56,7 @@ const AppliedInstructor = () => {
           }))
   }
   const handleDelete =(email) =>{
-    fetch(`http://localhost:5000/delete/${email}`,{
+    fetch(`https://eduman-server-silk.vercel.app/delete/${email}`,{
                 method : 'DELETE',
                 headers:{
                   "content-type" : "application/json",

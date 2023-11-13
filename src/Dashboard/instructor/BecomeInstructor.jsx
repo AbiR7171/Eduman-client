@@ -30,7 +30,7 @@ const BecomeInstructor = () => {
                     category : category,
                     time : new Date(),
                 }
-                fetch("http://localhost:5000/appliedInstructor",{
+                fetch("https://eduman-server-silk.vercel.app/appliedInstructor",{
                     method : 'POST',
                     headers:{
                         "content-type" : "application/json",

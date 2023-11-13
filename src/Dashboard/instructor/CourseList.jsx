@@ -8,7 +8,7 @@ const CourseList = () => {
   const [refresh, setRefresh] = useState(true);
   const [user] = useUsers()
   useEffect(()=>{
-    fetch(`http://localhost:5000/myCourse/${user.email}`)
+    fetch(`https://eduman-server-silk.vercel.app/myCourse/${user.email}`)
     .then(res => res.json())
     .then(data => setInstructor(data))
   },[user.email])

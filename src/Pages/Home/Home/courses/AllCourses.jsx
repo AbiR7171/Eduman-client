@@ -13,7 +13,7 @@ const AllCourses = () => {
     const [user] = useUsers()
     
     useEffect(()=>{
-        fetch("http://localhost:5000/allCourses")
+        fetch("https://eduman-server-silk.vercel.app/allCourses")
         .then(res => res.json())
         .then(data => setCourses(data))
       },[])
@@ -44,7 +44,7 @@ const AllCourses = () => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addCart`,{
+                fetch(`https://eduman-server-silk.vercel.app/addCart`,{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",

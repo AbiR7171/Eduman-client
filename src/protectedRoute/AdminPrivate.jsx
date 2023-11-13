@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import useAdminSecure from "../API/useAdminSecure";
 
 
-const InstructorPrivate = ({children}) => {
+const AdminPrivate = ({children}) => {
     const user = localStorage.getItem('edumanUser')
     const [isAdmin, loader] = useAdminSecure()
     console.log(isAdmin)
@@ -19,4 +19,4 @@ const InstructorPrivate = ({children}) => {
     );
 };
 
-export default InstructorPrivate;
+export default AdminPrivate;

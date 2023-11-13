@@ -19,7 +19,7 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     localStorage.setItem('mail', email)
-    axios.get(`http://localhost:5000/login/${email}`)
+    axios.get(`https://eduman-server-silk.vercel.app/login/${email}`)
       .then(res => {
         if (res.data.length > 0) {
           const passConfirmation = res?.data?.find(i => i.password === password)

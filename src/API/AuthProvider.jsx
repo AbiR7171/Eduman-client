@@ -12,7 +12,7 @@ const [isCart, setIsCart] = useState(true)
 
 useEffect(()=>{
     
-        fetch(`http://localhost:5000/currentUsers/${users}`)
+        fetch(`https://eduman-server-silk.vercel.app/currentUsers/${users}`)
         
                           .then(res => res.json())
                           .then(data => {

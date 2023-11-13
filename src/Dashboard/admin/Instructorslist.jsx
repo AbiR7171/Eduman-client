@@ -5,7 +5,7 @@ const Instructorslist = () => {
   const [instructor, setInstructor] = useState([])
   const [refresh, setRefresh] = useState(true);
   useEffect(()=>{
-    fetch("http://localhost:5000/allInstructor")
+    fetch("https://eduman-server-silk.vercel.app/allInstructor")
     .then(res => res.json())
     .then(data => setInstructor(data))
   },[refresh])
@@ -15,7 +15,7 @@ const Instructorslist = () => {
       role: "user",
     }
     console.log(currentRole)
-    fetch(`http://localhost:5000/instructorReq/${email}`,{
+    fetch(`https://eduman-server-silk.vercel.app/instructorReq/${email}`,{
                 method : 'PUT',
                 headers:{
                     "content-type" : "application/json",

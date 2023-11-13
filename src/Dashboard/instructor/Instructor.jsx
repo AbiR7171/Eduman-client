@@ -99,7 +99,7 @@ const Instructor = () => {
                 lessons : lessons,
                 date : new Date()
             }
-            fetch("http://localhost:5000/appliedCourses",{
+            fetch("https://eduman-server-silk.vercel.app/appliedCourses",{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",

@@ -23,7 +23,7 @@ const CourseEdit = () => {
 
     console.log(course)
     useEffect(()=>{
-        fetch(`http://localhost:5000/singleCourse/${id}`)
+        fetch(`https://eduman-server-silk.vercel.app/singleCourse/${id}`)
         .then(res => res.json())
         .then(data => {setCourse(data)})
       },[id, refresh])
@@ -128,7 +128,7 @@ const CourseEdit = () => {
             level : level,
             date : new Date()
         }
-        fetch(`http://localhost:5000/courseEdit/${id}`,{
+        fetch(`https://eduman-server-silk.vercel.app/courseEdit/${id}`,{
             method : 'PUT',
             headers:{
                 "content-type" : "application/json",

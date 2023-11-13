@@ -20,12 +20,12 @@ const NavBar = () => {
   const [courses, setCourses] = useState([])
   const loginUser = localStorage.getItem("edumanUser")
   useEffect(() => {
-    fetch(`http://localhost:5000/cart/${user.email}`)
+    fetch(`https://eduman-server-silk.vercel.app/cart/${user.email}`)
       .then(res => res.json())
       .then(data => { setEnrolledCourses(data) })
   }, [user?.email, isCart, loginUser])
   useEffect(() => {
-    fetch("http://localhost:5000/allCourses")
+    fetch("https://eduman-server-silk.vercel.app/allCourses")
       .then(res => res.json())
       .then(data => setCourses(data))
   }, [])

@@ -25,12 +25,12 @@ const Details = () => {
         }
     })
     useEffect(() => {
-        fetch(`http://localhost:5000/singleCourse/${id}`)
+        fetch(`https://eduman-server-silk.vercel.app/singleCourse/${id}`)
             .then(res => res.json())
             .then(data => { setCourse(data) })
     }, [id])
     useEffect(() => {
-        fetch(`http://localhost:5000/existEnrooled/${user.email}`)
+        fetch(`https://eduman-server-silk.vercel.app/existEnrooled/${user.email}`)
             .then(res => res.json())
             .then(data => { setEnrolledCourses(data) })
     }, [user, refresh])
@@ -48,7 +48,7 @@ const Details = () => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/addCart`,{
+                fetch(`https://eduman-server-silk.vercel.app/addCart`,{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",
@@ -83,7 +83,7 @@ const Details = () => {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/enrolled`,{
+                fetch(`https://eduman-server-silk.vercel.app/enrolled`,{
                 method : 'POST',
                 headers:{
                     "content-type" : "application/json",
@@ -103,7 +103,7 @@ const Details = () => {
                     enroll : course.enroll?course.enroll + 1 : 1
                 }
             
-            fetch(`http://localhost:5000/enrolleUpdate/${id}`,{
+            fetch(`https://eduman-server-silk.vercel.app/enrolleUpdate/${id}`,{
                 method : 'PUT',
                 headers:{
                     "content-type" : "application/json",
