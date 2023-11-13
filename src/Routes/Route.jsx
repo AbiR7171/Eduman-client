@@ -19,6 +19,7 @@ import CourseEdit from "../Dashboard/instructor/CourseEdit";
 import Details from "../Pages/Home/details";
 import Cart from "../Dashboard/student/Cart";
 import Enrolled from "../Dashboard/student/Enrolled";
+import UserPrivate from "../protectedRoute/userPrivate";
 
 
   const router = createBrowserRouter([
@@ -33,7 +34,7 @@ import Enrolled from "../Dashboard/student/Enrolled";
          },
          {
           path: '/details/:id',
-          element: <Details/>
+          element: <UserPrivate><Details/></UserPrivate>
         },
         {
           path: '/cart',
@@ -41,7 +42,7 @@ import Enrolled from "../Dashboard/student/Enrolled";
         },
         {
           path: '/enrolled',
-          element: <Enrolled/>
+          element: <UserPrivate><Enrolled/></UserPrivate>
         },
          {
             path: "/instructor",
