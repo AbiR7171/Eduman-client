@@ -24,7 +24,7 @@ const useInstructorSecure = () => {
         
         queryFn: async () =>{
             setLoader(false)
-            const res = await axiosSecure.get(`http://localhost:5000/user/instructor/${currentUser}`)
+            const res = await axiosSecure.get(`https://eduman-server-silk.vercel.app/user/instructor/${currentUser}`)
                 // await setLoader(true)
                 return (res.data.admin); 
                 // setLoader(true)

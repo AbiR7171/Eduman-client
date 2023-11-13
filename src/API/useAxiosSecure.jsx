@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'https://localhost:5000',
+    baseURL: 'https://eduman-server-silk.vercel.app/',
 })
 
 const useAxiosSecure = () =>{

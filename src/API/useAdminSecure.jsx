@@ -27,7 +27,7 @@ const useAdminSecure = () => {
         
         queryFn: async () =>{
             setLoader(false)
-            const res = await axiosSecure.get(`http://localhost:5000/user/admin/${currentUser}`);
+            const res = await axiosSecure.get(`https://eduman-server-silk.vercel.app/user/admin/${currentUser}`);
             setLoader(true)
                 return (res.data.admin);
         }
