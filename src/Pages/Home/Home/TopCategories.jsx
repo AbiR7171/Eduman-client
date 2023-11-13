@@ -1,14 +1,17 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import useUsers from '../../../Hooks/useUsers';
 
-const TopCategories = () => {
+const TopCategories = () => { 
+
+      const[user]=useUsers();
     return (
         <div>
             <p className='text-center text-2xl font-serif'>Explore <br /> Our Top Categories</p>
 
             <div className='grid grid-cols-3 gap-4 px-32 mt-10 mb-20'> {/*Parent*/}
                  
-                  <div className='flex items-center gap-5  hover:shadow-2xl hover:bg-white border p-3 rounded'>
+                  <div className='flex items-center gap-5  hover:shadow-4xl  hover:bg-white border p-3 rounded'>
                   <Icon icon="fa-solid:file-code" className='text-5xl text-blue-700' />
 
                   <div >
