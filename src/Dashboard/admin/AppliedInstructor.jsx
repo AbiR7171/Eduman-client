@@ -141,7 +141,7 @@ const AppliedInstructor = () => {
           {singleInstructor.email}
         </td>
         <td>{new Date(singleInstructor?.time).getDate()}/{new Date(singleInstructor?.time).getMonth()+1}/{new Date(singleInstructor?.time).getFullYear()}</td>
-        <td>{new Date(singleInstructor?.time).getHours() > 12 &&  new Date(singleInstructor?.time).getHours() - 12 }:{new Date(singleInstructor?.time).getMinutes() <10 && "0"}{new Date(singleInstructor?.time).getMinutes()} {new Date(singleInstructor?.time).getHours() > 12 &&  "PM" }</td>
+        <td>{new Date(singleInstructor?.time).getHours() > 12 ?  new Date(singleInstructor?.time).getHours() - 12 :  new Date(singleInstructor?.time).getHours() }:{new Date(singleInstructor?.time).getMinutes() <10 && "0"}{new Date(singleInstructor?.time).getMinutes()} {new Date(singleInstructor?.time).getHours() > 12 ?  "PM" : "AM" }</td>
         <td></td>
         <th className='grid'>
           <button className="btn btn-ghost btn-xs" onClick={()=>handleApproved(singleInstructor.email, singleInstructor.image)}>approved</button>

@@ -40,6 +40,7 @@ const NavBar = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem('edumanUser');
+    localStorage.removeItem('access-token');
     navigate("/")
     window.location.reload()
     

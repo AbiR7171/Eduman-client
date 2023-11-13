@@ -1,38 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 
 
 
-const useInstructorSecure = () => {
+const useAdminSecure = () => {
     const [loader, setLoader] = useState(true)
-    const [isAdmin, setIsAdmin] = useState()
     const currentUser = localStorage.getItem("edumanUser")
+    const [axiosSecure] = useAxiosSecure()
     
     
-    useEffect(()=>{
-        fetch(`https://eduman-server-silk.vercel.app/user/admin/${currentUser}`)
-        .then(res => res.json())
-        .then(data => { 
-            console.log(data);
-            setLoader(false)
-            setIsAdmin(data.admin)
-             setLoader(true)})
-      },[])
+        //  const fetching =  async() => {
+        //   const res = await  fetch(`http://localhost:5000/user/instructor/${currentUser}`)
+        // const result = await res.json();
+        //    setIsAdmin(result.admin)
+        // }
+        
+        
+      
+      
 
-    // const {data: isInstructor, isLoading: isAdminLoading} = useQuery({
-    //     queryKey:['isInstructor', currentUser],
+    const {data: isAdmin, isLoading: isAdminLoading} = useQuery({
+        queryKey:['isAdmin', currentUser],
         
-    //     queryFn: async () =>{
-            
-    //         const res = await axios.get(`https://eduman-server-silk.vercel.app/user/instructor/${currentUser}`);
-    //             return (res.data.admin, setLoader(true));
-    //     }
+        queryFn: async () =>{
+            setLoader(false)
+            const res = await axiosSecure.get(`http://localhost:5000/user/admin/${currentUser}`);
+            setLoader(true)
+                return (res.data.admin);
+        }
         
-    // })
-    return [isAdmin, loader];
+    })
+    return [isAdmin, isAdminLoading, loader];
     
 };
 
-export default useInstructorSecure;
+export default useAdminSecure;

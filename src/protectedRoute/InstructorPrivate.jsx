@@ -8,9 +8,10 @@ const InstructorPrivate = ({children}) => {
     const [isInstructor, loader] = useInstructorSecure(); 
     console.log(isInstructor)
     const location = useLocation();
-    if(!loader){
-        return <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
-    }
+    console.log(loader)
+    // if(!loader){
+    //     return <div className="w-1/12 mx-auto pt-60"><span className="loading loading-dots loading-lg  md:w-44"></span></div>
+    // }
     if(user && isInstructor){
         return children
     }

@@ -11,7 +11,6 @@ const AllCourses = () => {
     const [hoverID, setHoverId] = useState('')
     const {handleCartLoad} = useContext(AuthContext)
     const [user] = useUsers()
-    
     useEffect(()=>{
         fetch("https://eduman-server-silk.vercel.app/allCourses")
         .then(res => res.json())
