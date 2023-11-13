@@ -6,7 +6,6 @@ import { FiEdit } from "react-icons/fi";
 const Admin = () => {
     const location = useLocation();
     const currentPathname = location.pathname;
-    console.log(currentPathname);
     return (
         <>
         <h1 className='text-center text-4xl font-serif font-semibold text-blue-700 mt-2'>Instructor Dashboard</h1>

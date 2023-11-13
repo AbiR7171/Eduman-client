@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ShareBanner from '../../Shared/ShareBanner';
 import formImage from "../../assets/Images/formImage.png"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import AuthProvider from '../../API/AuthProvider';
+import AuthProvider, { AuthContext } from '../../API/AuthProvider';
+import useAxiosSecure from '../../API/useAxiosSecure';
+
+
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [err, setErr] = useState()
   const [err2, setErr2] = useState()
+  const { handleLoginChange } = useContext(AuthContext)
   const from = location.state?.from?.pathname || '/';
+  const [axiosSecure] = useAxiosSecure()
+  console.log(from)
   const handleForm = e => {
     setErr('')
     setErr2('')
@@ -30,10 +36,19 @@ const SignIn = () => {
 
 
           if (confirmation && passConfirmation) {
+            
+              axios.post('http://localhost:5000/jwt', { email: email })
+                      .then(data => {
+                          
+                        localStorage.setItem('access-token', data.data)
+                        console.log(data)
+                      })
+                      navigate(from, { replace: true })
             localStorage.removeItem("edumanUser")
             localStorage.setItem("edumanUser", email)
-            window.location.reload()
-            navigate(from, { replace: true })
+            // window.location.reload()
+            
+            
             const Toast = Swal.mixin({
               toast: true,
               position: 'top-end',

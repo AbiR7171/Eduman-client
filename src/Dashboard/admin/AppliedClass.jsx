@@ -135,7 +135,7 @@ const AppliedClass = () => {
           <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
         </td>
         <td>{new Date(course?.date).getDate()}/{new Date(course?.date).getMonth()+1}/{new Date(course?.date).getFullYear()}</td>
-        <td>{new Date(course?.date).getHours() > 12 &&  new Date(course?.date).getHours() - 12 }:{new Date(course?.date).getMinutes() <10 && "0"}{new Date(course?.date).getMinutes()} {new Date(course?.date).getHours() > 12 &&  "PM" }</td>
+        <td>{new Date(course?.date).getHours() > 12 ?  new Date(course?.date).getHours() - 12 : new Date(course?.date).getHours() }:{new Date(course?.date).getMinutes() <10 && "0"}{new Date(course?.date).getMinutes()} {new Date(course?.date).getHours() > 12 ?  "PM" : "AM" }</td>
         <td>
             {course.price}
         </td>

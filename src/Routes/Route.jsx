@@ -3,7 +3,6 @@ import {
   } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home/Home";
-import ViewDetails from "../Pages/ViewDetails/ViewDetails/ViewDetails";
 import Instructor from "../Dashboard/instructor/Instructor";
 import InstructorBoard from "../Dashboard/instructor/InstructorBoard";
 import Admin from "../Dashboard/admin/Admin";
@@ -20,7 +19,7 @@ import CourseEdit from "../Dashboard/instructor/CourseEdit";
 import Details from "../Pages/Home/details";
 import Cart from "../Dashboard/student/Cart";
 import Enrolled from "../Dashboard/student/Enrolled";
-
+import UserPrivate from "../protectedRoute/userPrivate";
 
 
   const router = createBrowserRouter([
@@ -30,15 +29,12 @@ import Enrolled from "../Dashboard/student/Enrolled";
       children:[
          {
             path:"/",
-            element:<Home/>
-         },
-         {
-          path:'/view_details',
-          element:<ViewDetails></ViewDetails>,
+            element:<Home/>,
+            
          },
          {
           path: '/details/:id',
-          element: <Details/>
+          element: <UserPrivate><Details/></UserPrivate>
         },
         {
           path: '/cart',
@@ -46,7 +42,7 @@ import Enrolled from "../Dashboard/student/Enrolled";
         },
         {
           path: '/enrolled',
-          element: <Enrolled/>
+          element: <UserPrivate><Enrolled/></UserPrivate>
         },
          {
             path: "/instructor",
@@ -81,10 +77,12 @@ import Enrolled from "../Dashboard/student/Enrolled";
          {
             path: "/admin",
              element:<AdminPrivate><Admin/></AdminPrivate>,
+            //  element:<Admin/>,
             children:[
               {
                 path:"/admin",
                 element: <AdminPrivate><AppliedInstructor/></AdminPrivate>
+                // element: <AppliedInstructor/>
               },
               {
                 path:"/admin/appliedClass",
