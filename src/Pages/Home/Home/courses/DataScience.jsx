@@ -103,8 +103,9 @@ const DataScience = ({route}) => {
                         <div>
                                     <Link to={`details/${course._id}`}><button className='px-4 py-2 mt-2 text-white font-semibold bg-blue-500 hover:bg-yellow-400 hover:text-black'>View Details </button></Link>
                                 </div>
-                            <button onClick={()=>handleCart(course._id)} className='border border-slate-500 px-4'><AiOutlineShoppingCart/></button>
-
+                                {
+                                    user && <button className='border border-slate-500 px-4' onClick={()=>handleCart(course._id)}><AiOutlineShoppingCart/></button>
+                                }
                         </div>
                     </div>
                 </div>
