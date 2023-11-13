@@ -105,14 +105,18 @@ const NavBar = () => {
             IsAdmin && <li><Link to={"/admin"}>Dashboard-admin</Link></li>
           }
           
-            <li> <Link to={"/enrolled"}>Enrolled-classes</Link></li>
+            {
+              user && <li> <Link to={"/enrolled"}>Enrolled-classes</Link></li>
+            }
           
 
           
         </ul>
       </div>
       <div className="navbar-end space-x-3 me-2">
-        <Link to={"/cart"} className="indicator cursor-pointer"> <span className="indicator-item badge badge-secondary">{seam?.length}</span> <Icon icon="mdi:cart" className='text-3xl ' /></Link>
+        {
+          user && <Link to={"/cart"} className="indicator cursor-pointer"> <span className="indicator-item badge badge-secondary">{seam?.length}</span> <Icon icon="mdi:cart" className='text-3xl ' /></Link>
+        }
         {
           !loginUser ? <Link to={"/signUp"}><button className="btn btn-primary">SignUp</button></Link> : <Link to={"/signUp"}><button className="btn btn-primary" onClick={() => handleLogOut()}>logout</button></Link>
         }
