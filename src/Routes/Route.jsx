@@ -3,6 +3,7 @@ import {
   } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home/Home";
+import ViewDetails from "../Pages/ViewDetails/ViewDetails/ViewDetails";
 import Instructor from "../Dashboard/instructor/Instructor";
 import InstructorBoard from "../Dashboard/instructor/InstructorBoard";
 import Admin from "../Dashboard/admin/Admin";
@@ -21,6 +22,7 @@ import Cart from "../Dashboard/student/Cart";
 import Enrolled from "../Dashboard/student/Enrolled";
 
 
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -28,8 +30,11 @@ import Enrolled from "../Dashboard/student/Enrolled";
       children:[
          {
             path:"/",
-            element:<Home/>,
-            
+            element:<Home/>
+         },
+         {
+          path:'/view_details',
+          element:<ViewDetails></ViewDetails>,
          },
          {
           path: '/details/:id',
